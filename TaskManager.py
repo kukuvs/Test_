@@ -163,3 +163,18 @@ class TaskManager:
         """
         tasks = self.load_tasks()
         return [task for task in tasks if task.category == category] if category else tasks
+
+    def mark_task_as_completed(self, task_id: int):
+        """
+        Отмечает задачу как выполненную.
+        :param task_id: ID задачи.
+        :raises ValueError: если задача не найдена.
+        """
+        tasks = self.load_tasks()
+        for task in tasks:
+            if task.id == task_id:  # Сравниваем по ID задачи
+                task.status = 'Выполнена'  # Исправляем статус на правильный
+                self.save_tasks(tasks)  # Сохраняем задачи обратно в файл
+                return
+        raise ValueError("Задача не найдена")
+

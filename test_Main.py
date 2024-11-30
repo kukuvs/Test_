@@ -1,95 +1,92 @@
-import os
-
-from Main import main
+import pytest
+from unittest.mock import patch, MagicMock
 from TaskManager import TaskManager
+from Main import handle_add_task, handle_delete_task, handle_edit_task, handle_view_tasks, handle_search_tasks, handle_mark_completed
 
-def test_main_view_tasks(tmpdir, capsys):
-    """
-    Тестирование просмотра всех задач
-    """
-    file_path = os.path.join(tmpdir, 'tasks.json')
-    manager = TaskManager(file_path)
-    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')
-    manager.add_task('Task 2', 'Description 2', 'Personal', '2024-12-02', 'Low')
 
-    main()
+@pytest.fixture
+def mock_manager():
+    """Создает мок для TaskManager."""
+    manager = MagicMock(spec=TaskManager)
+    manager.view_tasks.return_value = []
+    manager.search_tasks.return_value = []
+    manager.find_task_by_id.return_value = None
+    return manager
 
+
+def test_handle_add_task(mock_manager):
+    """Тестирует добавление задачи."""
+    inputs = ["Задача 1", "Описание", "Работа", "2024-12-01", "высокий"]
+    with patch("builtins.input", side_effect=inputs):
+        handle_add_task(mock_manager)
+    mock_manager.add_task.assert_called_once_with("Задача 1", "Описание", "Работа", "2024-12-01", "высокий")
+
+
+def test_handle_delete_task(mock_manager):
+    """Тестирует удаление задачи."""
+    with patch("builtins.input", side_effect=["1"]):
+        handle_delete_task(mock_manager)
+    mock_manager.delete_task.assert_called_once_with(1)
+
+
+def test_handle_delete_task_invalid_id(mock_manager, capsys):
+    """Тестирует удаление задачи с некорректным ID."""
+    with patch("builtins.input", side_effect=["abc"]):
+        handle_delete_task(mock_manager)
     captured = capsys.readouterr()
-    assert "Task 1" in captured.out
-    assert "Task 2" in captured.out
+    assert "Неверный формат ID." in captured.out
+    mock_manager.delete_task.assert_not_called()
 
-def test_main_add_task(tmpdir, capsys):
-    """
-    Тестирование добавления задачи
-    """
-    file_path = os.path.join(tmpdir, 'tasks.json')
-    manager = TaskManager(file_path)
 
-    main()
+def test_handle_edit_task(mock_manager):
+    """Тестирует редактирование задачи."""
+    inputs = ["1", "y", "Новый заголовок", "y", "Новое описание", "n", "n", "n"]
+    with patch("builtins.input", side_effect=inputs):
+        handle_edit_task(mock_manager)
+    mock_manager.edit_task.assert_called_once_with(1, title="Новый заголовок", description="Новое описание")
 
+
+def test_handle_edit_task_invalid_id(mock_manager, capsys):
+    """Тестирует редактирование задачи с некорректным ID."""
+    with patch("builtins.input", side_effect=["abc"]):
+        handle_edit_task(mock_manager)
     captured = capsys.readouterr()
-    assert "Название: " in captured.out
-    assert "Описание: " in captured.out
-    assert "Категория: " in captured.out
-    assert "Срок выполнения (YYYY-MM-DD): " in captured.out
-    assert "Приоритет (Низкий/Средний/Высокий): " in captured.out
+    assert "Неверный формат ID." in captured.out
+    mock_manager.edit_task.assert_not_called()
 
-def test_main_edit_task(tmpdir, capsys):
-    """
-    Тестирование редактирования задачи
-    """
-    file_path = os.path.join(tmpdir, 'tasks.json')
-    manager = TaskManager(file_path)
-    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')
 
-    main()
-
+def test_handle_view_tasks_no_tasks(mock_manager, capsys):
+    """Тестирует просмотр задач при отсутствии задач."""
+    mock_manager.view_tasks.return_value = []
+    with patch("builtins.input", side_effect=[""]):
+        handle_view_tasks(mock_manager)
     captured = capsys.readouterr()
-    assert "ID задачи для редактирования: " in captured.out
-    assert "Новое название (оставьте пустым для пропуска): " in captured.out
-    assert "Новое описание (оставьте пустым для пропуска): " in captured.out
-    assert "Новая категория (оставьте пустым для пропуска): " in captured.out
-    assert "Новый срок выполнения (YYYY-MM-DD, оставьте пустым для пропуска): " in captured.out
-    assert "Новый приоритет (оставьте пустым для пропуска): " in captured.out
+    assert "Задач не найдено." in captured.out
 
-def test_main_delete_task(tmpdir, capsys):
-    """
-    Тестирование удаления задачи
-    """
-    file_path = os.path.join(tmpdir, 'tasks.json')
-    manager = TaskManager(file_path)
-    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')
 
-    main()
-
+def test_handle_search_tasks_no_results(mock_manager, capsys):
+    """Тестирует поиск задач без результатов."""
+    mock_manager.search_tasks.return_value = []
+    inputs = ["ключевое слово", "Работа", "выполнено"]
+    with patch("builtins.input", side_effect=inputs):
+        handle_search_tasks(mock_manager)
     captured = capsys.readouterr()
-    assert "ID задачи для удаления: " in captured.out
+    assert "Задач не найдено." in captured.out
 
-def test_main_search_tasks(tmpdir, capsys):
-    """
-    Тестирование поиска задач
-    """
-    file_path = os.path.join(tmpdir, 'tasks.json')
-    manager = TaskManager(file_path)
-    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')
-    manager.add_task('Task 2', 'Description 2', 'Personal', '2024-12-02', 'Low')
 
-    main()
+def test_handle_mark_completed(mock_manager):
+    """Тестирует отметку задачи как выполненной."""
+    mock_manager.find_task_by_id.return_value = MagicMock()
+    with patch("builtins.input", side_effect=["1"]):
+        handle_mark_completed(mock_manager)
+    mock_manager.edit_task.assert_called_once_with(1, status="выполнено")
 
+
+def test_handle_mark_completed_task_not_found(mock_manager, capsys):
+    """Тестирует отметку задачи как выполненной, если задача не найдена."""
+    mock_manager.find_task_by_id.return_value = None
+    with patch("builtins.input", side_effect=["1"]):
+        handle_mark_completed(mock_manager)
     captured = capsys.readouterr()
-    assert "Ключевое слово: " in captured.out
-    assert "Категория: " in captured.out
-    assert "Статус (Выполнена/Не выполнена): " in captured.out
-
-def test_main_mark_task_as_completed(tmpdir, capsys):
-    """
-    Тестирование отметки задачи как выполненной
-    """
-    file_path = os.path.join(tmpdir, 'tasks.json')
-    manager = TaskManager(file_path)
-    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')
-
-    main()
-
-    captured = capsys.readouterr()
-    assert "ID задачи для отметки как выполненной: " in captured.out
+    assert "Задача не найдена." in captured.out
+    mock_manager.edit_task.assert_not_called()

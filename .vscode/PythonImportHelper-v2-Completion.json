@@ -1,5 +1,14 @@
 [
     {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
         "label": "TaskManager",
         "importPath": "TaskManager",
         "description": "TaskManager",
@@ -106,14 +115,6 @@
         "documentation": {}
     },
     {
-        "label": "main",
-        "importPath": "Main",
-        "description": "Main",
-        "isExtraImport": true,
-        "detail": "Main",
-        "documentation": {}
-    },
-    {
         "label": "pytest",
         "kind": 6,
         "isExtraImport": true,
@@ -123,11 +124,147 @@
         "documentation": {}
     },
     {
+        "label": "patch",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "MagicMock",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "handle_add_task",
+        "importPath": "Main",
+        "description": "Main",
+        "isExtraImport": true,
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_delete_task",
+        "importPath": "Main",
+        "description": "Main",
+        "isExtraImport": true,
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_edit_task",
+        "importPath": "Main",
+        "description": "Main",
+        "isExtraImport": true,
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_view_tasks",
+        "importPath": "Main",
+        "description": "Main",
+        "isExtraImport": true,
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_search_tasks",
+        "importPath": "Main",
+        "description": "Main",
+        "isExtraImport": true,
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_mark_completed",
+        "importPath": "Main",
+        "description": "Main",
+        "isExtraImport": true,
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "display_menu",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def display_menu() -> None:\n    \"\"\"Выводит меню программы.\"\"\"\n    menu_options = [\n        \"1. Добавить задачу\",\n        \"2. Удалить задачу\",\n        \"3. Редактировать задачу\",\n        \"4. Просмотреть задачи\",\n        \"5. Найти задачу\",\n        \"6. Отметить задачу как выполненную\",\n        \"7. Выход\",",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "get_task_updates",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def get_task_updates() -> dict:\n    \"\"\"Запрашивает у пользователя обновления для задачи.\"\"\"\n    updates = {}\n    fields = {\n        \"title\": \"Новый заголовок\",\n        \"description\": \"Новое описание\",\n        \"category\": \"Новая категория\",\n        \"due_date\": \"Новая дата выполнения (YYYY-MM-DD)\",\n        \"priority\": \"Новый приоритет (низкий/средний/высокий)\",\n    }",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_add_task",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def handle_add_task(manager: TaskManager) -> None:\n    \"\"\"Обрабатывает добавление новой задачи.\"\"\"\n    title = input(\"Введите заголовок: \")\n    description = input(\"Введите описание: \")\n    category = input(\"Введите категорию: \")\n    due_date = input(\"Введите дату выполнения (YYYY-MM-DD): \")\n    priority = input(\"Введите приоритет (низкий/средний/высокий): \")\n    manager.add_task(title, description, category, due_date, priority)\n    print(\"Задача добавлена.\")\ndef handle_delete_task(manager: TaskManager) -> None:",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_delete_task",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def handle_delete_task(manager: TaskManager) -> None:\n    \"\"\"Обрабатывает удаление задачи.\"\"\"\n    try:\n        task_id = int(input(\"Введите ID задачи для удаления: \"))\n        manager.delete_task(task_id)\n        print(\"Задача удалена.\")\n    except ValueError:\n        print(\"Неверный формат ID.\")\ndef handle_edit_task(manager: TaskManager) -> None:\n    \"\"\"Обрабатывает редактирование задачи.\"\"\"",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_edit_task",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def handle_edit_task(manager: TaskManager) -> None:\n    \"\"\"Обрабатывает редактирование задачи.\"\"\"\n    try:\n        task_id = int(input(\"Введите ID задачи для редактирования: \"))\n        updates = get_task_updates()\n        manager.edit_task(task_id, **updates)\n        print(\"Задача отредактирована.\")\n    except ValueError:\n        print(\"Неверный формат ID.\")\ndef handle_view_tasks(manager: TaskManager) -> None:",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_view_tasks",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def handle_view_tasks(manager: TaskManager) -> None:\n    \"\"\"Обрабатывает просмотр задач.\"\"\"\n    category = input(\"Введите категорию (нажмите Enter для всех категорий): \")\n    tasks = manager.view_tasks(category if category else None)\n    if tasks:\n        for task in tasks:\n            print(f\"\\n {task}\")\n    else:\n        print(\"Задач не найдено.\")\ndef handle_search_tasks(manager: TaskManager) -> None:",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_search_tasks",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def handle_search_tasks(manager: TaskManager) -> None:\n    \"\"\"Обрабатывает поиск задач.\"\"\"\n    keyword = input(\"Введите ключевое слово для поиска: \")\n    category = input(\"Введите категорию (нажмите Enter для всех категорий): \")\n    status = input(\"Введите статус (выполнено/не выполнено/нажмите Enter для всех): \")\n    tasks = manager.search_tasks(keyword, category if category else None, status if status else None)\n    if tasks:\n        for task in tasks:\n            print(task)\n    else:",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "handle_mark_completed",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def handle_mark_completed(manager: TaskManager) -> None:\n    \"\"\"Обрабатывает отметку задачи как выполненной.\"\"\"\n    try:\n        task_id = int(input(\"Введите ID задачи для отметки как выполненной: \"))\n        task = manager.find_task_by_id(task_id)\n        if task:\n            manager.edit_task(task_id, status=\"выполнено\")\n            print(\"Задача отмечена как выполненная.\")\n        else:\n            print(\"Задача не найдена.\")",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
         "label": "main",
         "kind": 2,
         "importPath": "Main",
         "description": "Main",
-        "peekOfCode": "def main():\n    manager = TaskManager(\"tasks.json\")\n    while True:\n        print(\"\\nМенеджер задач\")\n        print(\"1. Просмотреть все задачи\")\n        print(\"2. Добавить задачу\")\n        print(\"3. Редактировать задачу\")\n        print(\"4. Удалить задачу\")\n        print(\"5. Поиск задач\")\n        print(\"6. Отметить задачу как выполненную\")",
+        "peekOfCode": "def main():\n    file_path = \"tasks.json\"  # Укажите путь к файлу с задачами\n    manager = TaskManager(file_path)\n    actions = {\n        \"1\": handle_add_task,\n        \"2\": handle_delete_task,\n        \"3\": handle_edit_task,\n        \"4\": handle_view_tasks,\n        \"5\": handle_search_tasks,\n        \"6\": handle_mark_completed,",
         "detail": "Main",
         "documentation": {}
     },
@@ -150,56 +287,92 @@
         "documentation": {}
     },
     {
-        "label": "test_main_view_tasks",
+        "label": "mock_manager",
         "kind": 2,
         "importPath": "test_Main",
         "description": "test_Main",
-        "peekOfCode": "def test_main_view_tasks(tmpdir, capsys):\n    \"\"\"\n    Тестирование просмотра всех задач\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    manager.add_task('Task 2', 'Description 2', 'Personal', '2024-12-02', 'Low')\n    main()\n    captured = capsys.readouterr()",
+        "peekOfCode": "def mock_manager():\n    \"\"\"Создает мок для TaskManager.\"\"\"\n    manager = MagicMock(spec=TaskManager)\n    manager.view_tasks.return_value = []\n    manager.search_tasks.return_value = []\n    manager.find_task_by_id.return_value = None\n    return manager\ndef test_handle_add_task(mock_manager):\n    \"\"\"Тестирует добавление задачи.\"\"\"\n    inputs = [\"Задача 1\", \"Описание\", \"Работа\", \"2024-12-01\", \"высокий\"]",
         "detail": "test_Main",
         "documentation": {}
     },
     {
-        "label": "test_main_add_task",
+        "label": "test_handle_add_task",
         "kind": 2,
         "importPath": "test_Main",
         "description": "test_Main",
-        "peekOfCode": "def test_main_add_task(tmpdir, capsys):\n    \"\"\"\n    Тестирование добавления задачи\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    main()\n    captured = capsys.readouterr()\n    assert \"Название: \" in captured.out\n    assert \"Описание: \" in captured.out",
+        "peekOfCode": "def test_handle_add_task(mock_manager):\n    \"\"\"Тестирует добавление задачи.\"\"\"\n    inputs = [\"Задача 1\", \"Описание\", \"Работа\", \"2024-12-01\", \"высокий\"]\n    with patch(\"builtins.input\", side_effect=inputs):\n        handle_add_task(mock_manager)\n    mock_manager.add_task.assert_called_once_with(\"Задача 1\", \"Описание\", \"Работа\", \"2024-12-01\", \"высокий\")\ndef test_handle_delete_task(mock_manager):\n    \"\"\"Тестирует удаление задачи.\"\"\"\n    with patch(\"builtins.input\", side_effect=[\"1\"]):\n        handle_delete_task(mock_manager)",
         "detail": "test_Main",
         "documentation": {}
     },
     {
-        "label": "test_main_edit_task",
+        "label": "test_handle_delete_task",
         "kind": 2,
         "importPath": "test_Main",
         "description": "test_Main",
-        "peekOfCode": "def test_main_edit_task(tmpdir, capsys):\n    \"\"\"\n    Тестирование редактирования задачи\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    main()\n    captured = capsys.readouterr()\n    assert \"ID задачи для редактирования: \" in captured.out",
+        "peekOfCode": "def test_handle_delete_task(mock_manager):\n    \"\"\"Тестирует удаление задачи.\"\"\"\n    with patch(\"builtins.input\", side_effect=[\"1\"]):\n        handle_delete_task(mock_manager)\n    mock_manager.delete_task.assert_called_once_with(1)\ndef test_handle_delete_task_invalid_id(mock_manager, capsys):\n    \"\"\"Тестирует удаление задачи с некорректным ID.\"\"\"\n    with patch(\"builtins.input\", side_effect=[\"abc\"]):\n        handle_delete_task(mock_manager)\n    captured = capsys.readouterr()",
         "detail": "test_Main",
         "documentation": {}
     },
     {
-        "label": "test_main_delete_task",
+        "label": "test_handle_delete_task_invalid_id",
         "kind": 2,
         "importPath": "test_Main",
         "description": "test_Main",
-        "peekOfCode": "def test_main_delete_task(tmpdir, capsys):\n    \"\"\"\n    Тестирование удаления задачи\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    main()\n    captured = capsys.readouterr()\n    assert \"ID задачи для удаления: \" in captured.out",
+        "peekOfCode": "def test_handle_delete_task_invalid_id(mock_manager, capsys):\n    \"\"\"Тестирует удаление задачи с некорректным ID.\"\"\"\n    with patch(\"builtins.input\", side_effect=[\"abc\"]):\n        handle_delete_task(mock_manager)\n    captured = capsys.readouterr()\n    assert \"Неверный формат ID.\" in captured.out\n    mock_manager.delete_task.assert_not_called()\ndef test_handle_edit_task(mock_manager):\n    \"\"\"Тестирует редактирование задачи.\"\"\"\n    inputs = [\"1\", \"y\", \"Новый заголовок\", \"y\", \"Новое описание\", \"n\", \"n\", \"n\"]",
         "detail": "test_Main",
         "documentation": {}
     },
     {
-        "label": "test_main_search_tasks",
+        "label": "test_handle_edit_task",
         "kind": 2,
         "importPath": "test_Main",
         "description": "test_Main",
-        "peekOfCode": "def test_main_search_tasks(tmpdir, capsys):\n    \"\"\"\n    Тестирование поиска задач\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    manager.add_task('Task 2', 'Description 2', 'Personal', '2024-12-02', 'Low')\n    main()\n    captured = capsys.readouterr()",
+        "peekOfCode": "def test_handle_edit_task(mock_manager):\n    \"\"\"Тестирует редактирование задачи.\"\"\"\n    inputs = [\"1\", \"y\", \"Новый заголовок\", \"y\", \"Новое описание\", \"n\", \"n\", \"n\"]\n    with patch(\"builtins.input\", side_effect=inputs):\n        handle_edit_task(mock_manager)\n    mock_manager.edit_task.assert_called_once_with(1, title=\"Новый заголовок\", description=\"Новое описание\")\ndef test_handle_edit_task_invalid_id(mock_manager, capsys):\n    \"\"\"Тестирует редактирование задачи с некорректным ID.\"\"\"\n    with patch(\"builtins.input\", side_effect=[\"abc\"]):\n        handle_edit_task(mock_manager)",
         "detail": "test_Main",
         "documentation": {}
     },
     {
-        "label": "test_main_mark_task_as_completed",
+        "label": "test_handle_edit_task_invalid_id",
         "kind": 2,
         "importPath": "test_Main",
         "description": "test_Main",
-        "peekOfCode": "def test_main_mark_task_as_completed(tmpdir, capsys):\n    \"\"\"\n    Тестирование отметки задачи как выполненной\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    main()\n    captured = capsys.readouterr()\n    assert \"ID задачи для отметки как выполненной: \" in captured.out",
+        "peekOfCode": "def test_handle_edit_task_invalid_id(mock_manager, capsys):\n    \"\"\"Тестирует редактирование задачи с некорректным ID.\"\"\"\n    with patch(\"builtins.input\", side_effect=[\"abc\"]):\n        handle_edit_task(mock_manager)\n    captured = capsys.readouterr()\n    assert \"Неверный формат ID.\" in captured.out\n    mock_manager.edit_task.assert_not_called()\ndef test_handle_view_tasks_no_tasks(mock_manager, capsys):\n    \"\"\"Тестирует просмотр задач при отсутствии задач.\"\"\"\n    mock_manager.view_tasks.return_value = []",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_handle_view_tasks_no_tasks",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_handle_view_tasks_no_tasks(mock_manager, capsys):\n    \"\"\"Тестирует просмотр задач при отсутствии задач.\"\"\"\n    mock_manager.view_tasks.return_value = []\n    with patch(\"builtins.input\", side_effect=[\"\"]):\n        handle_view_tasks(mock_manager)\n    captured = capsys.readouterr()\n    assert \"Задач не найдено.\" in captured.out\ndef test_handle_search_tasks_no_results(mock_manager, capsys):\n    \"\"\"Тестирует поиск задач без результатов.\"\"\"\n    mock_manager.search_tasks.return_value = []",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_handle_search_tasks_no_results",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_handle_search_tasks_no_results(mock_manager, capsys):\n    \"\"\"Тестирует поиск задач без результатов.\"\"\"\n    mock_manager.search_tasks.return_value = []\n    inputs = [\"ключевое слово\", \"Работа\", \"выполнено\"]\n    with patch(\"builtins.input\", side_effect=inputs):\n        handle_search_tasks(mock_manager)\n    captured = capsys.readouterr()\n    assert \"Задач не найдено.\" in captured.out\ndef test_handle_mark_completed(mock_manager):\n    \"\"\"Тестирует отметку задачи как выполненной.\"\"\"",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_handle_mark_completed",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_handle_mark_completed(mock_manager):\n    \"\"\"Тестирует отметку задачи как выполненной.\"\"\"\n    mock_manager.find_task_by_id.return_value = MagicMock()\n    with patch(\"builtins.input\", side_effect=[\"1\"]):\n        handle_mark_completed(mock_manager)\n    mock_manager.edit_task.assert_called_once_with(1, status=\"выполнено\")\ndef test_handle_mark_completed_task_not_found(mock_manager, capsys):\n    \"\"\"Тестирует отметку задачи как выполненной, если задача не найдена.\"\"\"\n    mock_manager.find_task_by_id.return_value = None\n    with patch(\"builtins.input\", side_effect=[\"1\"]):",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_handle_mark_completed_task_not_found",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_handle_mark_completed_task_not_found(mock_manager, capsys):\n    \"\"\"Тестирует отметку задачи как выполненной, если задача не найдена.\"\"\"\n    mock_manager.find_task_by_id.return_value = None\n    with patch(\"builtins.input\", side_effect=[\"1\"]):\n        handle_mark_completed(mock_manager)\n    captured = capsys.readouterr()\n    assert \"Задача не найдена.\" in captured.out\n    mock_manager.edit_task.assert_not_called()",
         "detail": "test_Main",
         "documentation": {}
     },
