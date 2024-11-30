@@ -1,0 +1,359 @@
+[
+    {
+        "label": "TaskManager",
+        "importPath": "TaskManager",
+        "description": "TaskManager",
+        "isExtraImport": true,
+        "detail": "TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "TaskManager",
+        "importPath": "TaskManager",
+        "description": "TaskManager",
+        "isExtraImport": true,
+        "detail": "TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "TaskManager",
+        "importPath": "TaskManager",
+        "description": "TaskManager",
+        "isExtraImport": true,
+        "detail": "TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Task",
+        "importPath": "Task",
+        "description": "Task",
+        "isExtraImport": true,
+        "detail": "Task",
+        "documentation": {}
+    },
+    {
+        "label": "Task",
+        "importPath": "Task",
+        "description": "Task",
+        "isExtraImport": true,
+        "detail": "Task",
+        "documentation": {}
+    },
+    {
+        "label": "Task",
+        "importPath": "Task",
+        "description": "Task",
+        "isExtraImport": true,
+        "detail": "Task",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "importPath": "Main",
+        "description": "Main",
+        "isExtraImport": true,
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "Main",
+        "description": "Main",
+        "peekOfCode": "def main():\n    manager = TaskManager(\"tasks.json\")\n    while True:\n        print(\"\\nМенеджер задач\")\n        print(\"1. Просмотреть все задачи\")\n        print(\"2. Добавить задачу\")\n        print(\"3. Редактировать задачу\")\n        print(\"4. Удалить задачу\")\n        print(\"5. Поиск задач\")\n        print(\"6. Отметить задачу как выполненную\")",
+        "detail": "Main",
+        "documentation": {}
+    },
+    {
+        "label": "Task",
+        "kind": 6,
+        "importPath": "Task",
+        "description": "Task",
+        "peekOfCode": "class Task:\n    def __init__(self, id: int, title: str, description: str, category: str, due_date: str, priority: str, status: str = \"Не выполнена\"):\n        self.id = id\n        self.title = title\n        self.description = description\n        self.category = category\n        self.due_date = self._parse_date(due_date)\n        self.priority = priority\n        self.status = status\n    def _parse_date(self, date_str: str) -> datetime:",
+        "detail": "Task",
+        "documentation": {}
+    },
+    {
+        "label": "TaskManager",
+        "kind": 6,
+        "importPath": "TaskManager",
+        "description": "TaskManager",
+        "peekOfCode": "class TaskManager:\n    def __init__(self, file_path: str) -> None:\n        \"\"\"\n        Инициализирует TaskManager, создавая файл задач, если он не существует.\n        :param file_path: путь к файлу задач.\n        \"\"\"\n        self.file_path = file_path\n        self._ensure_file_exists()\n    def _ensure_file_exists(self) -> None:\n        \"\"\"",
+        "detail": "TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_main_view_tasks",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_main_view_tasks(tmpdir, capsys):\n    \"\"\"\n    Тестирование просмотра всех задач\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    manager.add_task('Task 2', 'Description 2', 'Personal', '2024-12-02', 'Low')\n    main()\n    captured = capsys.readouterr()",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_main_add_task",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_main_add_task(tmpdir, capsys):\n    \"\"\"\n    Тестирование добавления задачи\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    main()\n    captured = capsys.readouterr()\n    assert \"Название: \" in captured.out\n    assert \"Описание: \" in captured.out",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_main_edit_task",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_main_edit_task(tmpdir, capsys):\n    \"\"\"\n    Тестирование редактирования задачи\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    main()\n    captured = capsys.readouterr()\n    assert \"ID задачи для редактирования: \" in captured.out",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_main_delete_task",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_main_delete_task(tmpdir, capsys):\n    \"\"\"\n    Тестирование удаления задачи\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    main()\n    captured = capsys.readouterr()\n    assert \"ID задачи для удаления: \" in captured.out",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_main_search_tasks",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_main_search_tasks(tmpdir, capsys):\n    \"\"\"\n    Тестирование поиска задач\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    manager.add_task('Task 2', 'Description 2', 'Personal', '2024-12-02', 'Low')\n    main()\n    captured = capsys.readouterr()",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_main_mark_task_as_completed",
+        "kind": 2,
+        "importPath": "test_Main",
+        "description": "test_Main",
+        "peekOfCode": "def test_main_mark_task_as_completed(tmpdir, capsys):\n    \"\"\"\n    Тестирование отметки задачи как выполненной\n    \"\"\"\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    manager = TaskManager(file_path)\n    manager.add_task('Task 1', 'Description 1', 'Work', '2024-12-01', 'High')\n    main()\n    captured = capsys.readouterr()\n    assert \"ID задачи для отметки как выполненной: \" in captured.out",
+        "detail": "test_Main",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_creation",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_task_creation():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"High\")\n    assert task.id == 1\n    assert task.title == \"Test Task\"\n    assert task.description == \"Description\"\n    assert task.category == \"Work\"\n    assert task.due_date.strftime(\"%Y-%m-%d\") == \"2024-12-01\"\n    assert task.priority == \"High\"\n    assert task.status == \"Не выполнена\"\ndef test_task_to_dict():",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_to_dict",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_task_to_dict():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"High\")\n    task_dict = task.to_dict()\n    assert task_dict == {\n        \"id\": 1,\n        \"title\": \"Test Task\",\n        \"description\": \"Description\",\n        \"category\": \"Work\",\n        \"due_date\": \"2024-12-01\",\n        \"priority\": \"High\",",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_mark_as_completed",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_mark_as_completed():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"High\")\n    task.mark_as_completed()\n    assert task.status == \"Выполнена\"\ndef test_task_str():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"High\")\n    task_str = str(task)\n    expected_str = (\n        \"Task ID: 1\\n\"\n        \"Title: Test Task\\n\"",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_str",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_task_str():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"High\")\n    task_str = str(task)\n    expected_str = (\n        \"Task ID: 1\\n\"\n        \"Title: Test Task\\n\"\n        \"Description: Description\\n\"\n        \"Category: Work\\n\"\n        \"Due Date: 2024-12-01\\n\"\n        \"Priority: High\\n\"",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_invalid_date_format",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_invalid_date_format():\n    with pytest.raises(ValueError, match=\"Неверный формат даты: invalid-date. Используйте формат YYYY-MM-DD.\"):\n        Task(1, \"Invalid Date Task\", \"Description\", \"Work\", \"invalid-date\", \"High\")\ndef test_task_equality():\n    task1 = Task(1, \"Task 1\", \"Description 1\", \"Work\", \"2024-12-01\", \"High\")\n    task2 = Task(1, \"Task 1\", \"Description 1\", \"Work\", \"2024-12-01\", \"High\")\n    assert task1.to_dict() == task2.to_dict()\ndef test_task_priority():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"Low\")\n    assert task.priority == \"Low\"",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_equality",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_task_equality():\n    task1 = Task(1, \"Task 1\", \"Description 1\", \"Work\", \"2024-12-01\", \"High\")\n    task2 = Task(1, \"Task 1\", \"Description 1\", \"Work\", \"2024-12-01\", \"High\")\n    assert task1.to_dict() == task2.to_dict()\ndef test_task_priority():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"Low\")\n    assert task.priority == \"Low\"\n    task.priority = \"High\"\n    assert task.priority == \"High\"\ndef test_task_missing_fields():",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_priority",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_task_priority():\n    task = Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\", \"Low\")\n    assert task.priority == \"Low\"\n    task.priority = \"High\"\n    assert task.priority == \"High\"\ndef test_task_missing_fields():\n    with pytest.raises(TypeError):\n        Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\")  # Отсутствует `priority`",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_missing_fields",
+        "kind": 2,
+        "importPath": "test_Task",
+        "description": "test_Task",
+        "peekOfCode": "def test_task_missing_fields():\n    with pytest.raises(TypeError):\n        Task(1, \"Test Task\", \"Description\", \"Work\", \"2024-12-01\")  # Отсутствует `priority`",
+        "detail": "test_Task",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_init",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_init(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    assert os.path.exists(file_path)\ndef test_task_manager_load_tasks(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    assert task_manager.load_tasks() == []\n    with open(file_path, 'w') as file:\n        json.dump([",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_load_tasks",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_load_tasks(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    assert task_manager.load_tasks() == []\n    with open(file_path, 'w') as file:\n        json.dump([\n            {'id': 1, 'title': 'Task 1', 'description': 'Description 1', 'category': 'Work', 'due_date': '2024-12-01', 'priority': 'High'},\n            {'id': 2, 'title': 'Task 2', 'description': 'Description 2', 'category': 'Personal', 'due_date': '2024-12-02', 'priority': 'Medium'},\n        ], file)\n    tasks = task_manager.load_tasks()",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_save_tasks",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_save_tasks(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    tasks = [\n        Task(1, 'Task 1', 'Description 1', 'Work', '2024-12-01', 'High'),\n        Task(2, 'Task 2', 'Description 2', 'Personal', '2024-12-02', 'Medium'),\n    ]\n    task_manager.save_tasks(tasks)\n    with open(file_path, 'r') as file:\n        saved_tasks = json.load(file)",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_add_task",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_add_task(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    task_manager.add_task('Task 3', 'Description 3', 'Work', '2024-12-03', 'Low')\n    tasks = task_manager.load_tasks()\n    assert len(tasks) == 1\n    assert tasks[0].title == 'Task 3'\ndef test_task_manager_delete_task(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_delete_task",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_delete_task(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    task_manager.add_task('Task 3', 'Description 3', 'Work', '2024-12-03', 'Low')\n    task_manager.delete_task(1)\n    tasks = task_manager.load_tasks()\n    assert len(tasks) == 0\ndef test_task_manager_edit_task(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_edit_task",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_edit_task(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    task_manager.add_task('Task 3', 'Description 3', 'Work', '2024-12-03', 'Low')\n    task_manager.edit_task(1, title='Edited Task 3', category='Personal')\n    tasks = task_manager.load_tasks()\n    assert len(tasks) == 1\n    assert tasks[0].title == 'Edited Task 3'\n    assert tasks[0].category == 'Personal'\ndef test_task_manager_mark_task_as_completed(tmpdir):",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_mark_task_as_completed",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_mark_task_as_completed(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    task_manager.add_task('Task 3', 'Description 3', 'Work', '2024-12-03', 'Low')\n    task_manager.mark_task_as_completed(1)\n    tasks = task_manager.load_tasks()\n    assert len(tasks) == 1\n    assert tasks[0].status == 'Выполнена'\ndef test_task_manager_search_tasks(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_search_tasks",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_search_tasks(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    task_manager.add_task('Task 3', 'Description 3', 'Work', '2024-12-03', 'Low')\n    task_manager.add_task('Task 4', 'Description 4', 'Personal', '2024-12-04', 'High')\n    tasks = task_manager.search_tasks(keyword='Task 3')\n    assert len(tasks) == 1\n    assert tasks[0].title == 'Task 3'\n    tasks = task_manager.search_tasks(category='Personal')\n    assert len(tasks) == 1",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_manager_view_tasks",
+        "kind": 2,
+        "importPath": "test_TaskManager",
+        "description": "test_TaskManager",
+        "peekOfCode": "def test_task_manager_view_tasks(tmpdir):\n    file_path = os.path.join(tmpdir, 'tasks.json')\n    task_manager = TaskManager(file_path)\n    task_manager.add_task('Task 3', 'Description 3', 'Work', '2024-12-03', 'Low')\n    task_manager.add_task('Task 4', 'Description 4', 'Personal', '2024-12-04', 'High')\n    tasks = task_manager.view_tasks(category='Work')\n    assert len(tasks) == 1\n    assert tasks[0].category == 'Work'\n    tasks = task_manager.view_tasks()\n    assert len(tasks) == 2",
+        "detail": "test_TaskManager",
+        "documentation": {}
+    }
+]
